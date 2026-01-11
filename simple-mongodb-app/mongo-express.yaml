@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongo-express
+  namespace: mongoapp-namespace
   labels:
     app: mongo-express
 spec:
@@ -30,6 +31,16 @@ spec:
             secretKeyRef:
               name: mongodb-secret
               key: mongo-root-password
+        - name: ME_CONFIG_BASICAUTH_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-express-username
+        - name: ME_CONFIG_BASICAUTH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-express-password
         - name: ME_CONFIG_MONGODB_SERVER
           valueFrom: 
             configMapKeyRef:
@@ -42,6 +53,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongo-express-service
+  namespace: mongoapp-namespace
 spec:
   selector:
     app: mongo-express
