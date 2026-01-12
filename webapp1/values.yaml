@@ -14,3 +14,7 @@ configmap:
 image:
   name: devopsjourney1/mywebapp
   tag: latest
+
+ports:
+  targetPort: 80
+  nodePort: 30005

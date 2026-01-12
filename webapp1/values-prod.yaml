@@ -3,3 +3,7 @@ namespace: prod
 configmap:
   data:
     CUSTOM_HEADER: 'This is on the PROD environment!'
+
+ports:
+  targetPort: 80
+  nodePort: 30006

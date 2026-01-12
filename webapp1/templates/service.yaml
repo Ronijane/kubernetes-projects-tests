@@ -8,6 +8,8 @@ metadata:
 spec:
   ports:
   - port: 80
+    targetPort: {{ .Values.ports.targetPort }}
+    nodePort: {{ .Values.ports.nodePort }}
     protocol: TCP
     name: flask
   selector:
